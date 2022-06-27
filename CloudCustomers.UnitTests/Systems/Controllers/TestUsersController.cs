@@ -19,10 +19,10 @@ public class TestUsersController
            .Setup(service => service.GetAllUsers())
            .ReturnsAsync(UsersFixture.GetTestUsers());
 
-        var sut = new UsersController(mockUsersService.Object);
+        var systemUnderTest = new UsersController(mockUsersService.Object);
 
         // Act
-        var result = (OkObjectResult)await sut.Get();
+        var result = (OkObjectResult)await systemUnderTest.Get();
 
         // Assert
         result.StatusCode.Should().Be(200);
@@ -38,10 +38,10 @@ public class TestUsersController
             .Setup(service => service.GetAllUsers())
             .ReturnsAsync(new List<User>());
 
-        var sut = new UsersController(mockUsersService.Object);
+        var systemUnderTest = new UsersController(mockUsersService.Object);
 
         // Act
-        var result = await sut.Get();
+        var result = await systemUnderTest.Get();
 
         // Assert
         mockUsersService.Verify(
@@ -59,11 +59,11 @@ public class TestUsersController
             .Setup(service => service.GetAllUsers())
             .ReturnsAsync(UsersFixture.GetTestUsers());
 
-        var sut = new UsersController(mockUsersService.Object);
+        var systemUnderTest = new UsersController(mockUsersService.Object);
 
 
         // Act
-        var result = await sut.Get();
+        var result = await systemUnderTest.Get();
 
         // Assert
         result.Should().BeOfType<OkObjectResult>();
@@ -81,11 +81,11 @@ public class TestUsersController
             .Setup(service => service.GetAllUsers())
             .ReturnsAsync(new List<User>());
 
-        var sut = new UsersController(mockUsersService.Object);
+        var systemUnderTest = new UsersController(mockUsersService.Object);
 
 
         // Act
-        var result = await sut.Get();
+        var result = await systemUnderTest.Get();
 
         // Assert
         result.Should().BeOfType<NotFoundResult>();
